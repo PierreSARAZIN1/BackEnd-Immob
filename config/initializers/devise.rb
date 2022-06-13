@@ -15,7 +15,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'f220d38a639541208a05e8eccdc33dbfa456767a8f7befc5c69e41dcfdd39d3be18c1640bae869221c94e91b2fc7add4f651760522ebf04ea3e8fac261694812'
-  config.jwt_secret_key = '760d485c85c15ead82d78aaf9a8fbadbc9e303f089f7d11e837c43af600e8a9f157aa2b75a5cdd0ce6345b9d3d8c8c9e4d2274c3959a7378409978e7ad176de2'
+  # config.jwt_secret_key = '760d485c85c15ead82d78aaf9a8fbadbc9e303f089f7d11e837c43af600e8a9f157aa2b75a5cdd0ce6345b9d3d8c8c9e4d2274c3959a7378409978e7ad176de2'
   config.jwt do |jwt|
 		jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
 	end
