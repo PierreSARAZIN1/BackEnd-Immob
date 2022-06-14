@@ -5,6 +5,14 @@ class CreateAdverts < ActiveRecord::Migration[7.0]
       t.integer :price
       t.text :description
       t.string :category
+      t.integer :room
+      t.integer :bathroom
+      t.integer :area 
+      t.string :address
+      t.string :city
+      t.string :zip_code
+      t.boolean :garden
+      t.boolean :garage
 
       t.timestamps
     end
