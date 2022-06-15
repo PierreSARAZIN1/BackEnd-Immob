@@ -13,6 +13,7 @@ class CreateAdverts < ActiveRecord::Migration[7.0]
       t.string :zip_code
       t.boolean :garden
       t.boolean :garage
+      t.string :pictures_url, array: true, defaut: []
 
       t.timestamps
     end
