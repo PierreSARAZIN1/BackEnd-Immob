@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_13_092318) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_16_162259) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_092318) do
     t.string "zip_code"
     t.boolean "garden"
     t.boolean "garage"
-    t.string "pictures_url", array: true
+    t.string "pictures_url", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -40,6 +40,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_092318) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "receives", force: :cascade do |t|
+    t.string "content"
+    t.integer "sender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "advert_id"
+    t.index ["advert_id"], name: "index_receives_on_advert_id"
+    t.index ["user_id"], name: "index_receives_on_user_id"
+  end
+
+  create_table "sends", force: :cascade do |t|
+    t.string "content"
+    t.integer "receiver"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "advert_id"
+    t.index ["advert_id"], name: "index_sends_on_advert_id"
+    t.index ["user_id"], name: "index_sends_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +77,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_092318) do
   end
 
   add_foreign_key "adverts", "users"
+  add_foreign_key "receives", "adverts"
+  add_foreign_key "receives", "users"
+  add_foreign_key "sends", "adverts"
+  add_foreign_key "sends", "users"
 end
